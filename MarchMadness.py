@@ -122,7 +122,17 @@ if __name__ == '__main__':
         return re.match(pattern, acListEntry)
     # Send team1 and team2 to go do calculation
     def calculate():
+        if firstTeamInput.get() not in autocompleteList or len(firstTeamInput.get()) is 0:
+            firstTeamInput.configure(bg='red')
+        else:
+            firstTeamInput.configure(bg='white')
+        if secondTeamInput.get() not in autocompleteList or len(secondTeamInput.get()) is 0:
+            secondTeamInput.configure(bg='red')
+        else:
+            secondTeamInput.configure(bg='white')
         if(firstTeamInput.get() in autocompleteList and secondTeamInput.get() in autocompleteList):
+            firstTeamInput.configure(bg='white')
+            secondTeamInput.configure(bg='white')
             # tylerscode.dostuff(team1, team2)
             winner = firstTeamInput.get()
             message = "Expected Winner: \n" + winner
