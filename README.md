@@ -1,1 +1,3 @@
-Readme...
+Imports needed
+pandas
+numpy
