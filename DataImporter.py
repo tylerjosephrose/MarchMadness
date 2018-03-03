@@ -52,30 +52,6 @@ class DataImporter:
                 result[i,5] = data[i,3]
                 result[i,8:20] = data[i,21:33]
                 result[i,21:33] = data[i,8:20]
-                '''result[i,9] = data[i,22]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]
-                result[i] = data[i]'''
         return result
 
     def getDataMatrix(self, teamName, year):
@@ -92,6 +68,6 @@ class DataImporter:
         lFtPerc = data[:,25]/data[:,26]
         result = [totalScore, data[:,7], wTwoPerc, wThreePerc, wFtPerc, data[:,14], data[:,15], data[:,16], data[:,17], data[:,18], data[:,19], data[:,20],
                                          lTwoPerc, lThreePerc, lFtPerc, data[:,27], data[:,28], data[:,29], data[:,30], data[:,31], data[:,32], data[:,33]]
-        return result
+        return result, data[:,3], data[:,5]
 
         
