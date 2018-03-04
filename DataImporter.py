@@ -46,7 +46,6 @@ class DataImporter:
         result = data.copy()
         for i in range(data.shape[0]):
             if not np.equal(data[i,2], teamId):
-                print("needs flipped")
                 # Flip the winning and losing data so the matrix turns out correct
                 result[i,3] = data[i,5]
                 result[i,5] = data[i,3]
@@ -71,7 +70,7 @@ class DataImporter:
         return result, data[:,3], data[:,5]
 
         
-    def getAllDataMatrix(self, teamName, year):
+    def getAllDataMatrix(self, teamName):
         ''' matrix will follow the format
         Total Score, OTs, FG%, 3%, ft%, OR, DR, Ast, TO, Stl, Blk, Fouls, same for other team'''
         data = self.getAllData(teamName).as_matrix()

@@ -123,7 +123,21 @@ if __name__ == '__main__':
         return re.match(pattern, acListEntry)
     # Send team1 and team2 to go do calculation
     def calculate():
+        # Highlight which input has issues
+        if firstTeamInput.get() not in autocompleteList or len(firstTeamInput.get()) is 0:
+            firstTeamInput.configure(bg='red')
+        else:
+            firstTeamInput.configure(bg='white')
+
+        # Highlight which input has issues
+        if secondTeamInput.get() not in autocompleteList or len(secondTeamInput.get()) is 0:
+            secondTeamInput.configure(bg='red')
+        else:
+            secondTeamInput.configure(bg='white')
         if(firstTeamInput.get() in autocompleteList and secondTeamInput.get() in autocompleteList):
+            firstTeamInput.configure(bg='white')
+            secondTeamInput.configure(bg='white')
+            # Send team values to the predictor to do analysis
             predictor = pred.Predictor()
             winner = predictor.doStuff(firstTeamInput.get(), secondTeamInput.get())
             message = 'Expected Winner: \n' + winner
@@ -132,8 +146,8 @@ if __name__ == '__main__':
         winnerLabel.configure(text=message)
         winnerLabel.grid(row=4, padx=10, pady=10)
 
-    winnerLabel = Label(text="")
     # Create widgets and place on the grid
+    winnerLabel = Label(text="")
     firstTeamInput = AutocompleteEntry(autocompleteList, root, listboxLength=6, width=32, matchesFunction=matches)
     firstTeamInput.grid(row=0, padx=10, pady=10)    
     vsLabel = Label(text='VS')

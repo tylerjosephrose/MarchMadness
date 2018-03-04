@@ -4,21 +4,23 @@ import DataImporter as di
 class Predictor:    
     def doStuff(self, teamOne, teamTwo):
         # Acquire data from DataImporter
-        teamOne2017, teamOne2017Score, teamOne2017Opponent = di.getDataMatrix(teamOne, 2017)
-        teamOneAll, teamOneAllScore, teamOneAllOpponent = di.getAllDataMatrix(teamOne)
-        teamTwo2017, teamTwo2017Score, teamTwo2017Opponent = di.getDataMatrix(teamTwo, 2017)
-        teamTwoAll, teamTwoAllScore, teamTwoAllOpponent = di.getAllDataMatrix(teamTwo)
+        dataImp = di.DataImporter()
+        teamOne2017, teamOne2017Score, teamOne2017Opponent = dataImp.getDataMatrix(teamOne, 2017)
+        teamOneAll, teamOneAllScore, teamOneAllOpponent = dataImp.getAllDataMatrix(teamOne)
+        teamTwo2017, teamTwo2017Score, teamTwo2017Opponent = dataImp.getDataMatrix(teamTwo, 2017)
+        teamTwoAll, teamTwoAllScore, teamTwoAllOpponent = dataImp.getAllDataMatrix(teamTwo)
         # AllTeams
         
         # Generate models
-        teamOne2017Model = lm.fit(teamOne2017, teamOne2017Score)
-        teamOne2017OppModel = lm.fit(teamOne2017, teamOne2017Opponent)
-        teamOneAllModel = lm.fit(teamOneAll, teamOneAllScore)
-        teamOneAllOppModel = lm.fit(teamOneAll, teamOneAllOpponent)
-        teamTwo2017Model = lm.fit(teamTwo2017, teamTwo2017Score)
-        teamTwo2017OppModel = lm.fit(teamTwo2017, teamTwo2017Opponent)
-        teamTwoAllModel = lm.fit(teamTwoAll, teamTwoAllScore)
-        teamTwoAllOppModel = lm.fit(teamTwoAll, teamTwoAllOpponent)
+        linear = lm.linear_model()
+        teamOne2017Model = linear.fit(teamOne2017, teamOne2017Score)
+        teamOne2017OppModel = linear.fit(teamOne2017, teamOne2017Opponent)
+        teamOneAllModel = linear.fit(teamOneAll, teamOneAllScore)
+        teamOneAllOppModel = linear.fit(teamOneAll, teamOneAllOpponent)
+        teamTwo2017Model = linear.fit(teamTwo2017, teamTwo2017Score)
+        teamTwo2017OppModel = linear.fit(teamTwo2017, teamTwo2017Opponent)
+        teamTwoAllModel = linear.fit(teamTwoAll, teamTwoAllScore)
+        teamTwoAllOppModel = linear.fit(teamTwoAll, teamTwoAllOpponent)
 
         t1 = averageStat()
         t2 = averageStat()
