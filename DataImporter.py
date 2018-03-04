@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from math import ceil
 
 class DataImporter:
     def __init__(self):
@@ -13,6 +14,20 @@ class DataImporter:
         if len(ids) > 0:
             return ids[0]
         return False
+
+    def getTeamEstimate(self, teamName, year):
+        data, _, _ = self.getDataMatrix(teamName, year)
+        data = np.matrix(data)
+        numOfGames = data.shape[0]
+        # last 15% of games is 70% of average
+        lastGames = numOfGames - ceil(numOfGames*.15)
+        lastAvg = np.average(data[:,lastGames:numOfGames], axis=1)
+        # next 15% is 20% of average
+        nextGames = lastGames - ceil(numOfGames*.15)
+        nextAvg = np.average(data[:,nextGames:lastGames], axis=1)
+        # rest of games is remaining 10%
+        restAvg = np.average(data[:,:nextGames], axis=1)
+        return .7*lastAvg+.2*nextAvg+.1*restAvg
 
     def getAllTeamNames(self):
         return self.teams.TeamName.as_matrix()
@@ -46,7 +61,6 @@ class DataImporter:
         result = data.copy()
         for i in range(data.shape[0]):
             if not np.equal(data[i,2], teamId):
-                print("needs flipped")
                 # Flip the winning and losing data so the matrix turns out correct
                 result[i,3] = data[i,5]
                 result[i,5] = data[i,3]
