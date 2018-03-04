@@ -91,12 +91,24 @@ class DataImporter:
         data = self.getAllData(teamName).as_matrix()
         data = self.normalizeGameData(teamName, data)
         totalScore = data[:,3] + data[:,5]
-        wTwoPerc = (data[:,8]-data[:,10])/(data[:,9]-data[:,11])
-        wThreePerc = data[:,10]/data[:,11]
-        wFtPerc = data[:,12]/data[:,13]
-        lTwoPerc = (data[:,21]-data[:,23])/(data[:,22]-data[:,24])
-        lThreePerc = data[:,23]/data[:,24]
-        lFtPerc = data[:,25]/data[:,26]
+        a = (data[:,8]-data[:,10])
+        b = (data[:,9]-data[:,11])
+        wTwoPerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
+        a = data[:,10]
+        b = data[:,11]
+        wThreePerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
+        a = data[:,12]
+        b = data[:,13]
+        wFtPerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
+        a = (data[:,21]-data[:,23])
+        b = (data[:,22]-data[:,24])
+        lTwoPerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
+        a = data[:,23]
+        b = data[:,24]
+        lThreePerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
+        a = data[:,25]
+        b = data[:,26]
+        lFtPerc = np.divide(a, b, out=np.ones_like(a), where=b!=0)
         result = [totalScore, data[:,7], wTwoPerc, wThreePerc, wFtPerc, data[:,14], data[:,15], data[:,16], data[:,17], data[:,18], data[:,19], data[:,20],
                                          lTwoPerc, lThreePerc, lFtPerc, data[:,27], data[:,28], data[:,29], data[:,30], data[:,31], data[:,32], data[:,33]]
         # result - teamName's full data
