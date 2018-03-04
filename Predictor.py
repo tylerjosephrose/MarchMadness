@@ -36,7 +36,7 @@ class Predictor:
         t1Score1 = teamOne2017Model.predict(t1)
         t1Score2 = teamOne2017OppModel.predict(t1)
         t1Score3 = teamOneAllModel.predict(t1)
-        t1Score4 = tteamOneAllOppModel.predict(t1)
+        t1Score4 = teamOneAllOppModel.predict(t1)
         t2Score1 = teamTwo2017Model.predict(t2)
         t2Score2 = teamTwo2017OppModel.predict(t2)
         t2Score3 = teamTwoAllModel.predict(t2)

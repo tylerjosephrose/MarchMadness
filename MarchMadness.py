@@ -141,9 +141,9 @@ if __name__ == '__main__':
             predictor = pred.Predictor()
             teamOneScore, teamTwoScore = predictor.analyze(firstTeamInput.get(), secondTeamInput.get())
             if(teamOneScore > teamTwoScore):
-                message = 'Expected Winner: \n' + firstTeamInput.get() + '\nScore: ' + teamOneScore + ' - ' + teamTwoScore
+                message = 'Expected Winner: \n' + firstTeamInput.get() + '\nScore: ' + str(int(teamOneScore)) + ' - ' + str(int(teamTwoScore))
             elif(teamTwoScore > teamOneScore):
-                message = 'Expected Winner: \n' + secondTeamInput.get() + '\nScore: ' + teamTwoScore + ' - ' + teamOneScore
+                message = 'Expected Winner: \n' + secondTeamInput.get() + '\nScore: ' + str(int(teamTwoScore)) + ' - ' + str(int(teamOneScore))
             else:
                 message = 'Expected a tie. \n' + '\nScore: ' + teamTwoScore + ' - ' + teamOneScore
         else:
