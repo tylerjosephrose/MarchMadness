@@ -139,7 +139,7 @@ if __name__ == '__main__':
             secondTeamInput.configure(bg='white')
             # Send team values to the predictor to do analysis
             predictor = pred.Predictor()
-            winner = predictor.doStuff(firstTeamInput.get(), secondTeamInput.get())
+            winner = predictor.analyze(firstTeamInput.get(), secondTeamInput.get())
             message = 'Expected Winner: \n' + winner
         else:
             message = 'Please enter a valid team.'
