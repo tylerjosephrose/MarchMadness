@@ -2,7 +2,7 @@ from sklearn import linear_model as lm
 import DataImporter as di
 
 class Predictor:    
-    def doStuff(self, teamOne, teamTwo):
+    def analyze(self, teamOne, teamTwo):
         # Acquire data from DataImporter
         dataImp = di.DataImporter()
         teamOne2017, teamOne2017Score, teamOne2017Opponent = dataImp.getDataMatrix(teamOne, 2017)
