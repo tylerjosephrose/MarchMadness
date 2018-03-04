@@ -12,7 +12,7 @@ class Predictor:
         # AllTeams
         
         # Generate models
-        linear = lm.linear_model()
+        linear = lm.LinearRegression()
         teamOne2017Model = linear.fit(teamOne2017, teamOne2017Score)
         teamOne2017OppModel = linear.fit(teamOne2017, teamOne2017Opponent)
         teamOneAllModel = linear.fit(teamOneAll, teamOneAllScore)
