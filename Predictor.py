@@ -29,8 +29,14 @@ class Predictor:
 
         t1 = dataImp.getTeamEstimate(teamOne, 2017)
         t2 = dataImp.getTeamEstimate(teamTwo, 2017)
-        t1 = np.matrix(t1).transpose()
-        t2 = np.matrix(t2).transpose()
+        t1 = np.matrix(t1)
+        t2 = np.matrix(t2)
+        temp1 = t1[12:]
+        temp2 = t2[12:]
+        t1 = np.delete(t1, np.s_[12:], axis=0)
+        t2 = np.delete(t2, np.s_[12:], axis=0)
+        t1 = np.concatenate((t1, temp2), axis=0).T
+        t2 = np.concatenate((t2, temp1), axis=0).T
 
         # Predict
         t1Score1 = teamOne2017Model.predict(t1)
