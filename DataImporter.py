@@ -71,3 +71,23 @@ class DataImporter:
         return result, data[:,3], data[:,5]
 
         
+    def getAllDataMatrix(self, teamName, year):
+        ''' matrix will follow the format
+        Total Score, OTs, FG%, 3%, ft%, OR, DR, Ast, TO, Stl, Blk, Fouls, same for other team'''
+        data = self.getAllData(teamName).as_matrix()
+        data = self.normalizeGameData(teamName, data)
+        totalScore = data[:,3] + data[:,5]
+        wTwoPerc = (data[:,8]-data[:,10])/(data[:,9]-data[:,11])
+        wThreePerc = data[:,10]/data[:,11]
+        wFtPerc = data[:,12]/data[:,13]
+        lTwoPerc = (data[:,21]-data[:,23])/(data[:,22]-data[:,24])
+        lThreePerc = data[:,23]/data[:,24]
+        lFtPerc = data[:,25]/data[:,26]
+        result = [totalScore, data[:,7], wTwoPerc, wThreePerc, wFtPerc, data[:,14], data[:,15], data[:,16], data[:,17], data[:,18], data[:,19], data[:,20],
+                                         lTwoPerc, lThreePerc, lFtPerc, data[:,27], data[:,28], data[:,29], data[:,30], data[:,31], data[:,32], data[:,33]]
+        # result - teamName's full data
+        # data[:,3] - teamName's score
+        # data[:,5] - scores from every team that teamName played
+        return result, data[:,3], data[:,5]
+
+        
